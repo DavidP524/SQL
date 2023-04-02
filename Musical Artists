@@ -1,0 +1,82 @@
+#In this SQL code I have retrieved information from some of the biggest artists in the music industry.
+
+CREATE TABLE artists (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stage_name TEXT,
+    real_name TEXT,
+    age INTEGER,
+    birth_state TEXT
+);
+
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Rod Wave', 'Rodarius Green', 23, 'Florida');
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Drake', 'Aubrey Graham', 36, 'Ontario');
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Frank Ocean', 'Christopher Ocean', 35, 'California');
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Bruno Mars', 'Peter Hernandez', 37, 'Hawaii');
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Snoop Dogg', 'Calvin Broadus', 51, 'California');
+INSERT INTO artists (stage_name, real_name, age, birth_state)
+    VALUES ('Katy Perry', 'Katheryn Hudson', 38, 'California');
+
+CREATE TABLE songs (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    artist_id INTEGER,
+    title TEXT,
+    album TEXT,
+    release_year INTEGER);
+
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (1, 'Heart On Ice', 'PTSD', 2019);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (1, 'Rags2Riches', 'Pray 4 Love', 2020);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (1, 'Street Runner', 'SoulFly', 2021);
+
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (2, 'God''s Plan', 'Scorpion', 2018);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (2, 'One Dance', 'Views', 2016);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (2, 'In My Feelings', 'Scorpion', 2018);
+
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (3, 'Thinkin Bout You', 'Channel Orange', 2012);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (3, 'Pyramids', 'Channel Orange', 2012);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (3, 'Blonde', 'Blonde', 2016);
+
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (4, 'Uptown Funk', 'Uptown Special', 2015);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (4, '24K Magic', '24K Magic', 2016);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (4, 'Just The Way You Are', 'Doo-Wops & Hooligans', 2010);
+
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (5, 'Gin and Juice', 'Doggystyle', 1993);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (5, 'Drop It Like It''s Hot', 'R&G (Rhythm & Gangsta): The Masterpiece', 2004);
+INSERT INTO songs (artist_id, title, album, release_year)
+    VALUES (5, 'Who Am I (What''s My Name)?', 'Doggystyle', 1993);
+   
+-- Displaying the basic information from the 'artists' table --
+SELECT * 
+FROM artists;
+
+-- A list of all the songs in the 'songs' table, along with their titles, stage name, the album, and the release year --
+SELECT s.title,a.stage_name,s.album,s.release_year 
+FROM artists a
+INNER JOIN songs s
+ON a.id = s.artist_id;
+
+-- The average age of all the artists in the 'artists' table --
+SELECT ROUND(AVG(age)) AS average_age
+FROM artists;
+
+-- A list of the artists who were born in California --
+SELECT stage_name AS born_in_california
+FROM artists
+WHERE birth_state = 'California';
